@@ -79,27 +79,7 @@ def password(v):
         return "Password length must be 9-20 characters!"
 ```
 
-#### Breach Check
-```python
-import mysql.connector
 
-def check_breached_password(passwordinput):
-    connector = mysql.connector.connect(user='sanga123', 
-    password='breached6789!!', host='breachedpasswords.mysql.database.azure.com',
-    port=3306, database='breachedpasswords')
-    
-    query = "SELECT * FROM passwords WHERE Password = %s"
-    cursor = connector.cursor()
-    cursor.execute(query, (passwordinput,))
-    
-    result = cursor.fetchone()
-    connector.close()
-    
-    if result:
-        raise Exception("Password entered is a breached password")
-    else:
-        print("Password entered is not a breached password")
-```
 
 ## Example Output
 ```
@@ -122,12 +102,5 @@ Strong Password!
 - Add support for **additional password policies**
 - Improve password entropy scoring
 
-## License
-This project is licensed under the **MIT License**.
 
-## Contributing
-Feel free to **open issues** or **submit pull requests** to improve functionality.
-
-## Contact
-For any questions, reach out at [your.email@example.com](mailto:your.email@example.com).
 
